@@ -9,7 +9,7 @@
         android:id="@+id/tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#00F5FF"
+        android:background="@color/white"
         android:gravity="center"
         android:padding="15dp"
         android:text="@string/tv_text"/>
@@ -18,8 +18,8 @@
         android:id="@+id/bt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#8470FF"
+        android:background="@color/white"
         android:gravity="center"
         android:padding="15dp"
-        android:text="我是按钮"/>
+        android:text="@string/bt_text"/>
 </LinearLayout>

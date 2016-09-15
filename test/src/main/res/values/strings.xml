@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">BaseUtil</string>
     <string name="tv_text">我是文本框</string>
+    <string name="text_home">主页</string>
+    <string name="bt_text">我是按钮</string>
 </resources>
