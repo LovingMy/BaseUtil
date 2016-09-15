@@ -3,8 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BaseUtil.iml" filepath="$PROJECT_DIR$/BaseUtil.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/base-util/base-util.iml" filepath="$PROJECT_DIR$/base-util/base-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fast-dev/fast-dev.iml" filepath="$PROJECT_DIR$/fast-dev/fast-dev.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fast-http/fast-http.iml" filepath="$PROJECT_DIR$/fast-http/fast-http.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fast-ioc/fast-ioc.iml" filepath="$PROJECT_DIR$/fast-ioc/fast-ioc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fast-orm/fast-orm.iml" filepath="$PROJECT_DIR$/fast-orm/fast-orm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/test/app.iml" filepath="$PROJECT_DIR$/test/app.iml" />
     </modules>
   </component>
 </project>

@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="super-adapter-1.0.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/test/build/intermediates/exploded-aar/com.yutianran.maven/super-adapter/1.0.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/test/build/intermediates/exploded-aar/com.yutianran.maven/super-adapter/1.0.0/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.yutianran.maven/super-adapter/1.0.0/d88aa31278ec3ec463b755c43819769aa53c89e6/super-adapter-1.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

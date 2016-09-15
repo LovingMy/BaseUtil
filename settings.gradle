@@ -1,1 +1,1 @@
-include ':app', ':base-util'
+include ':test', ':base-util', ':fast-orm', ':fast-ioc', ':fast-http', ':fast-dev'

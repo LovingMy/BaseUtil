@@ -8,15 +8,23 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/base-util" />
+            <option value="$PROJECT_DIR$/fast-dev" />
+            <option value="$PROJECT_DIR$/fast-http" />
+            <option value="$PROJECT_DIR$/fast-ioc" />
+            <option value="$PROJECT_DIR$/fast-orm" />
+            <option value="$PROJECT_DIR$/test" />
           </set>
         </option>
         <option name="myModules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/base-util" />
+            <option value="$PROJECT_DIR$/fast-dev" />
+            <option value="$PROJECT_DIR$/fast-http" />
+            <option value="$PROJECT_DIR$/fast-ioc" />
+            <option value="$PROJECT_DIR$/fast-orm" />
+            <option value="$PROJECT_DIR$/test" />
           </set>
         </option>
       </GradleProjectSettings>
