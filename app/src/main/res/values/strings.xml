@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">BaseUtil</string>
+    <string name="tv_text">我是文本框</string>
+</resources>
