@@ -15,11 +15,7 @@ import java.lang.annotation.Target;
 @Inherited
 @Documented
 public @interface IView {
-    //默认字段，使用时：@IView(R.id.tv)
     int value();
-
-    //其它字段，使用时：@IView(id=R.id.tv)
-//    int id() default 0;
 }
 
 

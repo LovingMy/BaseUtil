@@ -1,0 +1,215 @@
+#1.代码
+```
+package com.che.carcheck.ui.helper;
+
+import com.che.carcheck.support.util.LogUtil;
+
+import net.sf.cglib.proxy.Enhancer;
+import net.sf.cglib.proxy.MethodInterceptor;
+import net.sf.cglib.proxy.MethodProxy;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+
+/**
+ * 代理模式学习
+ * <p>
+ * 作者：余天然 on 16/5/6 下午2:30
+ */
+public class ProxyStudy {
+
+    //使用场景
+    public static void main() {
+        //被代理类
+        UserImpl target = new UserImpl("小明");
+        target.login();
+        target.updateInfo();
+
+        //静态代理
+        testStaticProxy(target);
+
+        //JDK动态代理
+        testJdkProxy(target);
+
+        //Cglib动态代理
+        testCglibProxy(target);
+
+    }
+
+    private static void testStaticProxy(UserImpl target) {
+        LogUtil.print("静态代理:开始");
+        UserStaticProxy staticProxy = new UserStaticProxy(target);
+        staticProxy.login();
+        staticProxy.updateInfo();
+    }
+
+    private static void testJdkProxy(UserImpl target) {
+        LogUtil.print("JDK动态代理:开始");
+        JdkProxyFactory jdkFactory = new JdkProxyFactory();
+        User jdkProxy = (User) jdkFactory.createProxy(target);
+        jdkProxy.login();
+        jdkProxy.updateInfo();
+    }
+
+    /**
+     * 测试Cglib动态代理
+     * <p>
+     * 注意：此代码在Java环境可运行，但在Android环境会报错！
+     * 原因：Java是JVM虚拟器,Android是DarvikVM虚拟机,类加载机制有区别，而Cglib是基于继承的字节码生成技术，所有有问题。
+     *
+     * @param target
+     */
+    private static void testCglibProxy(UserImpl target) {
+        LogUtil.print("Cglib动态代理:开始");
+        CglibProxyFactory cglibFactory = new CglibProxyFactory();
+        User cglibProxy = (User) cglibFactory.createProxy(target);
+        cglibProxy.login();
+        cglibProxy.updateInfo();
+    }
+
+    //接口
+    public interface User {
+        void login();
+
+        void updateInfo();
+    }
+
+    //被代理类
+    public static class UserImpl implements User {
+        private String name;
+
+        public UserImpl(String name) {
+            this.name = name;
+        }
+
+        @Override
+        public void login() {
+            LogUtil.print(this.name + "登录……");
+
+        }
+
+        @Override
+        public void updateInfo() {
+            LogUtil.print(this.name + "更新信息……");
+        }
+
+    }
+
+    //静态代理
+    public static class UserStaticProxy implements User {
+        private UserImpl userImpl;
+
+        public UserStaticProxy(UserImpl userImpl) {
+            this.userImpl = userImpl;
+        }
+
+        @Override
+        public void login() {
+            doBefore();
+            this.userImpl.login();
+        }
+
+        @Override
+        public void updateInfo() {
+            doBefore();
+            this.userImpl.updateInfo();
+            doAfter();
+        }
+
+        private void doBefore() {
+            LogUtil.print("静态代理:前置动作……");
+        }
+
+        private void doAfter() {
+            LogUtil.print("静态代理:后置动作……");
+        }
+
+    }
+
+    //JDK动态代理
+    public static class JdkProxyFactory implements InvocationHandler {
+        private Object target;
+
+        //创建代理类
+        public Object createProxy(Object target) {
+            this.target = target;
+            //取得代理对象
+            return Proxy.newProxyInstance(
+                    target.getClass().getClassLoader(), target.getClass().getInterfaces(), this);
+        }
+
+        //改变委托类方法的调用逻辑
+        @Override
+        public Object invoke(Object proxy, Method method, Object[] args)
+                throws Throwable {
+            Object result = null;
+            if (method.getName().equals("login")) {
+                doBefore();
+                result = method.invoke(target, args);
+            }
+            if (method.getName().equals("updateInfo")) {
+                doBefore();
+                result = method.invoke(target, args);
+                doAfter();
+            }
+            return result;
+        }
+
+        private void doBefore() {
+            LogUtil.print("JDK动态代理:前置动作……");
+        }
+
+        private void doAfter() {
+            LogUtil.print("JDK动态代理:后置动作……");
+        }
+
+    }
+
+    //Cglib动态代理
+    public static class CglibProxyFactory implements MethodInterceptor {
+        private Object target;
+
+        //创建代理类
+        public Object createProxy(Object target) {
+            this.target = target;
+            Enhancer enhancer = new Enhancer();
+            enhancer.setSuperclass(this.target.getClass());
+            enhancer.setCallback(this);
+            return enhancer.create();
+        }
+
+        //改变委托类方法的调用逻辑
+        @Override
+        public Object intercept(Object target, Method method, Object[] args, MethodProxy proxy) throws Throwable {
+            Object result = null;
+            if (method.getName().equals("login")) {
+                doBefore();
+                result = proxy.invokeSuper(target, args);
+            }
+            if (method.getName().equals("updateInfo")) {
+                doBefore();
+                result = proxy.invokeSuper(target, args);
+                doAfter();
+            }
+            return result;
+        }
+
+        private void doBefore() {
+            LogUtil.print("Cglib动态代理:前置动作……");
+        }
+
+        private void doAfter() {
+            LogUtil.print("Cglib动态代理:后置动作……");
+        }
+    }
+
+
+}
+
+
+```
+
+#2.日志
+
+![这里写图片描述](http://img.blog.csdn.net/20160506152017258)

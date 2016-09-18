@@ -19,10 +19,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Zane on 15/12/1.
+ * 注解工具类
+ * <p>
+ * 作者：余天然 on 16/9/16 上午2:10
  */
 public class InjectUtil {
 
+    /**
+     * 绑定
+     *
+     * @param activity
+     */
     public static void bind(Activity activity) {
         Class<? extends Activity> clazz = activity.getClass();
         //处理类注解
@@ -37,6 +44,28 @@ public class InjectUtil {
         for (Method method : clazz.getDeclaredMethods()) {
             //处理方法注解
             processMethod(activity, method);
+        }
+    }
+
+    /**
+     * 解绑
+     *
+     * @param activity
+     */
+    public static void unbind(Activity activity) {
+        try {
+            Class<? extends Activity> clazz = activity.getClass();
+            //遍历所有的字段
+            for (Field field : clazz.getDeclaredFields()) {
+                LogUtil.print("field=" + field.getName() + "\t" + field.getType());
+                //将所有字段置空
+                boolean accessible = field.isAccessible();
+                field.setAccessible(true);
+                field.set(activity, null);
+                field.setAccessible(accessible);
+            }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
         }
     }
 
@@ -56,7 +85,7 @@ public class InjectUtil {
     }
 
     /**
-     * 分别处理类注解
+     * 分发类注解
      */
     private static void dispatchType(Activity activity, Class<? extends Activity> clazz, Class<? extends Annotation> annotationType) {
         if (annotationType == IContentView.class) {
@@ -86,6 +115,32 @@ public class InjectUtil {
     }
 
     /**
+     * 分发字段注解
+     */
+    private static void dispatchFiled(Activity activity, Field field, Class<?> annotationType) {
+        try {
+            if (annotationType == IView.class) {
+                IView anno = field.getAnnotation(IView.class);
+                int value = anno.value();
+                field.set(activity, activity.findViewById(value));
+            }
+            if (annotationType == IString.class) {
+                IString anno = field.getAnnotation(IString.class);
+                int value = anno.value();
+                field.set(activity, activity.getString(value));
+            }
+            if (annotationType == IColor.class) {
+                IColor anno = field.getAnnotation(IColor.class);
+                int value = anno.value();
+                field.set(activity, activity.getResources().getColor(value));
+            }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
      * 处理方法注解
      */
     private static void processMethod(Activity activity, Method method) {
@@ -101,7 +156,7 @@ public class InjectUtil {
     }
 
     /**
-     * 分别处理注解注解
+     * 分发方法注解
      */
     private static void dispatchMethod(Activity activity, Method method, Class<? extends Annotation> annotationType) {
         try {
@@ -129,48 +184,5 @@ public class InjectUtil {
         }
     }
 
-
-    /**
-     * 分别处理字段注解
-     */
-    private static void dispatchFiled(Activity activity, Field field, Class<?> annotationType) {
-        try {
-            if (annotationType == IView.class) {
-                IView anno = field.getAnnotation(IView.class);
-                int value = anno.value();
-                field.set(activity, activity.findViewById(value));
-            }
-            if (annotationType == IString.class) {
-                IString anno = field.getAnnotation(IString.class);
-                int value = anno.value();
-                field.set(activity, activity.getString(value));
-            }
-            if (annotationType == IColor.class) {
-                IColor anno = field.getAnnotation(IColor.class);
-                int value = anno.value();
-                field.set(activity, activity.getResources().getColor(value));
-            }
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public static void unbind(Activity activity) {
-        try {
-            Class<? extends Activity> clazz = activity.getClass();
-            //遍历所有的字段
-            for (Field field : clazz.getDeclaredFields()) {
-                LogUtil.print("field=" + field.getName() + "\t" + field.getType());
-                //将所有字段置空
-                boolean accessible = field.isAccessible();
-                field.setAccessible(true);
-                field.set(activity, null);
-                field.setAccessible(accessible);
-            }
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
 
 }

@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 
 /**
  * 列注解
- * <p/>
+ * <p>
  * 作者：余天然 on 16/9/15 下午4:36
  */
 @Target({ElementType.FIELD})
@@ -17,4 +17,7 @@ import java.lang.annotation.Target;
 @Inherited
 @Documented
 public @interface Column {
+
+    //当注解值为空时，默认以字段名为列名
+    String value() default "";
 }

@@ -6,7 +6,7 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
 /**
- * 动态代理，调用activity.method
+ * 动态代理，调用activity里面的method：例如：onClick等
  * <p>
  * 作者：余天然 on 16/9/16 上午2:13
  */

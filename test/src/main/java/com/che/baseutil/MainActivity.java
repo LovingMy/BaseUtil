@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.che.fast_ioc.InjectUtil;
@@ -17,26 +18,17 @@ import java.util.Random;
 
 
 @IContentView(R.layout.activity_main)
-public class MainActivity extends Activity implements View.OnClickListener {
-
-    private static String clzField = "类变量";
-    private String objField = "对象变量";
-
+public class MainActivity extends Activity {
     @IView(R.id.tv)
     TextView tv;
-
     @IView(R.id.bt)
-    TextView bt;
-
+    Button bt;
     @IString(R.string.text_home)
     String title;
-
     @IColor(R.color.turquoise)
     int turquoiseColor;
-
     @IColor(R.color.moccasin)
     int moccasinColor;
-
     private Random random;
 
     @Override
@@ -50,9 +42,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     @Override
-    protected void onPause() {
+    protected void onDestroy() {
         InjectUtil.unbind(this);
-        super.onPause();
+        super.onDestroy();
     }
 
     @IClick({R.id.tv, R.id.bt})

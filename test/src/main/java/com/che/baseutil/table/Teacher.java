@@ -14,13 +14,13 @@ import lombok.Data;
 public class Teacher {
 
     @Column
-    private Integer id;
+    private int id;
 
     @Column
     private String name;
 
     @Column
-    private Integer age;
+    private int age;
 
     @Column
     private String course;

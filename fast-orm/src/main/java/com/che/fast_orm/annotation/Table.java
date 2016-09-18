@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 
 /**
  * 表注解
- * <p/>
+ * <p>
  * 作者：余天然 on 16/9/15 下午4:37
  */
 @Target({ElementType.TYPE})  //应用于类或接口
@@ -17,4 +17,7 @@ import java.lang.annotation.Target;
 @Inherited  //类注解可被类继承
 @Documented
 public @interface Table {
+
+    //当注解值为空时，默认以类名为表名
+    String value() default "";
 }

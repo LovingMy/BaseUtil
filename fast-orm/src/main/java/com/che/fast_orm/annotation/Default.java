@@ -1,4 +1,4 @@
-package com.che.fast_ioc.annotation;
+package com.che.fast_orm.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -7,14 +7,14 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target({ElementType.TYPE})
+/**
+ * 默认值约束
+ * <p>
+ * 作者：余天然 on 16/9/17 下午12:07
+ */
+@Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 @Documented
-public @interface IContentView {
-    //默认字段，使用时：@IView(R.id.tv)
-    int value();
-
-    //其它字段，使用时：@IView(id=R.id.tv)
-//    int id() default 0;
+public @interface Default {
 }

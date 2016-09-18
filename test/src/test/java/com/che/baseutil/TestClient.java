@@ -15,10 +15,7 @@ import com.che.base_util.MD5Util;
 import com.che.base_util.NetStateUtil;
 import com.che.base_util.SPUtil;
 import com.che.base_util.VersionUtil;
-import com.che.baseutil.table.Student;
-import com.che.baseutil.table.Teacher;
-import com.che.fast_orm.DBHelper;
-import com.che.fast_orm.helper.SqlGenerater;
+import com.che.baseutil.bean.SPObj;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -48,7 +45,6 @@ import static com.google.common.truth.Truth.assertThat;
 public class TestClient {
 
     private Context context;
-
 
     @Before
     public void setUp() {
@@ -193,60 +189,6 @@ public class TestClient {
         assertThat(color).isEqualTo(0xffFF4081);
     }
 
-    @Test
-    public void testCreate() {
-        LogUtil.print("createStudent=" + SqlGenerater.create(Student.class));
-    }
-
-    @Test
-    public void testInsert() {
-        Student student = new Student();
-        student.setName("Fishyer");
-        student.setAge(23);
-        String insertStudent = SqlGenerater.insert(student);
-
-        Teacher teacher = new Teacher();
-        teacher.setName("Stay");
-        teacher.setAge(25);
-        teacher.setCourse("Android");
-        String insertTeacher = SqlGenerater.insert(teacher);
-
-        LogUtil.print("insertStudent=" + insertStudent);
-        LogUtil.print("insertTeacher=" + insertTeacher);
-    }
-
-    @Test
-    public void testSelect() {
-        Student student = new Student();
-        student.setName("Fishyer");
-        student.setAge(23);
-        String queryStudent = SqlGenerater.select(student);
-
-        Teacher teacher = new Teacher();
-        teacher.setName("Stay");
-        teacher.setAge(25);
-        teacher.setCourse("Android");
-        String queryTeacher = SqlGenerater.select(teacher);
-
-        LogUtil.print("queryStudent=" + queryStudent);
-        LogUtil.print("queryTeacher=" + queryTeacher);
-    }
-
-    @Test
-    public void testORM() {
-        DBHelper dbHelper = new DBHelper(context, "mydb", 1);
-        //创建表
-        dbHelper.create(Student.class);
-        //插入数据
-        dbHelper.insert(new Student("Fishyer", 23));
-        dbHelper.insert(new Student("Stay", 23));
-        dbHelper.insert(new Student("Ricky"));
-        dbHelper.insert(new Student(21));
-        //查询表中所有数据
-        LogUtil.print("selectAll=" + dbHelper.selectAll(Student.class));
-        //查询表中指定数据
-        LogUtil.print("select=" + dbHelper.select(new Student(21)));
-    }
 
     public void test() {
 
