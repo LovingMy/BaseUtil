@@ -64,7 +64,6 @@ Android常用工具类:多渠道打包、公用Adapter、屏幕尺寸、文件�
 1. [5种手势工具类](http://www.jianshu.com/p/5aeaff6f92a7)
 1. [abd命令备忘](http://www.jianshu.com/p/809c77558b60)
 
-
 ##Android特效
 1. [仿QQ空间可拉伸头部特效](http://www.jianshu.com/p/981455141930)
 1. [自定义Behavior,实现滑动卡片](http://www.jianshu.com/p/f0e380129a19)
@@ -73,7 +72,7 @@ Android常用工具类:多渠道打包、公用Adapter、屏幕尺寸、文件�
 
 ##Android实战
 1. [AS快捷键-Mac](http://www.jianshu.com/p/36408300a62c)
-1. [AS常用插件]()
+1. [AS常用插件](http://www.jianshu.com/p/e916474150d2)
 1. [MVP+单元测试探索](http://www.jianshu.com/p/3e3459d0fe25)
 1. [RxJava使用场景总结](http://www.jianshu.com/p/2d567b1d93c3)
 1. [OkHttp自定义重试次数](http://www.jianshu.com/p/d878daad0fbd)
