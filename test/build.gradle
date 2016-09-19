@@ -21,23 +21,6 @@ android {
         versionName "1.0"
     }
 
-    signingConfigs {
-        //打包debug版本的签名
-        debug {
-            keyAlias 'carmall'
-            keyPassword 'carmall'
-            storeFile file('carmall.jks')
-            storePassword 'carmall'
-        }
-        //打包debug版本的签名
-        release {
-            keyAlias 'carmall'
-            keyPassword 'carmall'
-            storeFile file('carmall.jks')
-            storePassword 'carmall'
-        }
-    }
-
     buildTypes {
         release {
             minifyEnabled false
