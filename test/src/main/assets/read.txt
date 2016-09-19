@@ -1,8 +1,8 @@
 #1.代码
 ```
-package com.che.carcheck.ui.helper;
+package com.che.test.ui.helper;
 
-import com.che.carcheck.support.util.LogUtil;
+import com.che.test.support.util.LogUtil;
 
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;

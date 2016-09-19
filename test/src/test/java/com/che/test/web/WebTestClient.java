@@ -1,12 +1,14 @@
 package com.che.test.web;
 
 import com.che.base_util.LogUtil;
+import com.che.fast_http.AbsWebSubscriber;
+import com.che.fast_http.WebClient;
+import com.che.fast_http.helper.IWebLoading;
+import com.che.fast_http.helper.TestWebLoading;
+import com.che.fast_http.helper.TestWebTransformer;
 import com.che.test.BuildConfig;
 import com.che.test.web.bean.TestLoginRequest;
 import com.che.test.web.bean.TestLoginResponse;
-import com.che.test.web.helper.IWebLoading;
-import com.che.test.web.helper.TestWebLoading;
-import com.che.test.web.helper.TestWebTransformer;
 
 import org.junit.Before;
 import org.junit.Test;

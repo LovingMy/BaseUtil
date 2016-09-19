@@ -4,8 +4,8 @@ import android.app.Application;
 
 import com.che.base_util.LogUtil;
 import com.che.test.BuildConfig;
-import com.che.test.table.Person;
-import com.che.test.table.Teacher;
+import com.che.test.sqlite.table.Person;
+import com.che.test.sqlite.table.Teacher;
 import com.che.fast_orm.DBHelper;
 import com.che.fast_orm.helper.DBException;
 
