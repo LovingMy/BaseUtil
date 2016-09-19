@@ -22,7 +22,7 @@ Android常用工具类:多渠道打包、公用Adapter、屏幕尺寸、文件�
 同时，也在这里整理了自己学习Guava库、RxJava库、算法、设计模式、JDK用法等的一些测试代码
 例如：7种排序算法、自定义RxJava、自定义Handler、自定义异步任务等
 
-#我的博文：
+#[我的博客](http://www.jianshu.com/users/507f45931bd6/latest_articles)：
 ---
 
 ##Java基础：
