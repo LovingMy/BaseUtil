@@ -1,4 +1,4 @@
-package com.che.baseutil.web.helper;
+package com.che.fast_http.helper;
 
 import com.che.base_util.LogUtil;
 

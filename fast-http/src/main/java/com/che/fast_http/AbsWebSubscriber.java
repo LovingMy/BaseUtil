@@ -1,7 +1,8 @@
-package com.che.baseutil.web;
+package com.che.fast_http;
 
-import com.che.baseutil.web.helper.IWebLoading;
-import com.che.baseutil.web.helper.WebException;
+
+import com.che.fast_http.helper.IWebLoading;
+import com.che.fast_http.helper.WebException;
 
 import rx.Subscriber;
 

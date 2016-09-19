@@ -1,7 +1,8 @@
-package com.che.baseutil.web;
+package com.che.fast_http;
 
-import com.che.baseutil.web.helper.IWebLoading;
-import com.che.baseutil.web.helper.WebException;
+
+import com.che.fast_http.helper.IWebLoading;
+import com.che.fast_http.helper.WebException;
 
 import java.util.concurrent.TimeUnit;
 
@@ -56,7 +57,7 @@ public class WebTransformer<T> implements Observable.Transformer<T, T> {
                 .throttleFirst(1, TimeUnit.SECONDS)//取1秒之内的第一次,防止重复提交
                 .onErrorResumeNext(new Func1<Throwable, Observable<? extends T>>() {//捕获自定义异常或系统异常
                     @Override
-                    public Observable<? extends T> call(Throwable throwable) {
+                    public Observable<? extends T> call(final Throwable throwable) {
                         return Observable.create(new Observable.OnSubscribe<T>() {
                             @Override
                             public void call(Subscriber<? super T> subscriber) {

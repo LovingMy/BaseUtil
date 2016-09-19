@@ -1,6 +1,5 @@
-package com.che.baseutil.web;
+package com.che.fast_http;
 
-import com.che.baseutil.BuildConfig;
 import com.google.gson.Gson;
 
 import java.util.concurrent.TimeUnit;
