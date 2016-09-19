@@ -235,17 +235,46 @@ public class ReflectHelper {
      * 例如:'Stay',23
      */
     private static Object getCursorValue(Cursor cursor, String filedName, Class<?> type) {
-        if (type == int.class) {
-            // TODO: 16/9/15 这里null会自动变成0，是个问题！
-            int value = cursor.getInt(cursor.getColumnIndex(filedName));
-            return value;
+        while (cursor.moveToNext()) {
+            int nameColumnIndex = cursor.getColumnIndex("filedName");
+            String value = cursor.getString(nameColumnIndex);
         }
+
+        //文本
         if (type == String.class) {
-            String string = cursor.getString(cursor.getColumnIndex(filedName));
-            return string;
+            return cursor.getString(cursor.getColumnIndex(filedName));
         }
-        //根据情况else 其他数据类型，看着玩儿吧....
-        return null;
+        // TODO: 16/9/15 获取整数时，如果数据库存的是null，这里会自动变成0，是个问题！
+        //整数
+        else if (type == int.class) {
+            return cursor.getInt(cursor.getColumnIndex(filedName));
+        } else if (type == Integer.class) {
+            return cursor.getInt(cursor.getColumnIndex(filedName));
+        } else if (type == long.class) {
+            return cursor.getLong(cursor.getColumnIndex(filedName));
+        } else if (type == Long.class) {
+            return cursor.getLong(cursor.getColumnIndex(filedName));
+        } else if (type == boolean.class) {
+            int anInt = cursor.getInt(cursor.getColumnIndex(filedName));
+            return anInt == 0 ? false : true;
+        } else if (type == Boolean.class) {
+            int anInt = cursor.getInt(cursor.getColumnIndex(filedName));
+            return anInt == 0 ? false : true;
+        }
+        //实数
+        else if (type == float.class) {
+            return cursor.getFloat(cursor.getColumnIndex(filedName));
+        } else if (type == Float.class) {
+            return cursor.getFloat(cursor.getColumnIndex(filedName));
+        } else if (type == double.class) {
+            return cursor.getDouble(cursor.getColumnIndex(filedName));
+        } else if (type == Double.class) {
+            return cursor.getDouble(cursor.getColumnIndex(filedName));
+        }
+        //输入形式
+        else {
+            return " BLOB";
+        }
     }
 
 

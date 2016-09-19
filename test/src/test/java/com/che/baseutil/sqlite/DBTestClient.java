@@ -1,7 +1,6 @@
 package com.che.baseutil.sqlite;
 
 import android.app.Application;
-import android.database.sqlite.SQLiteConstraintException;
 
 import com.che.base_util.LogUtil;
 import com.che.baseutil.BuildConfig;
@@ -45,15 +44,14 @@ public class DBTestClient {
         dbHelper.drop(Person.class);
         //创建表
         dbHelper.create(Person.class);
-
-        SQLiteConstraintException sqLiteConstraintException;
+        //初始化数据，方便之后操作
+        initData();
     }
 
     /**
      * 插入
      */
-    @Test
-    public void testInset()  {
+    public void initData() {
         try {
             //插入多条数据
             List<Person> persons = new ArrayList<>();
@@ -68,9 +66,10 @@ public class DBTestClient {
             //插入单条数据
             Person untitled = new Person();
             untitled.setAge(21);
+            untitled.setHeight(200);
             dbHelper.insert(untitled);
         } catch (DBException e) {
-            LogUtil.print("异常："+e.getMessage());
+            LogUtil.print("数据库异常：" + e.getMessage());
         }
     }
 
@@ -90,13 +89,13 @@ public class DBTestClient {
      */
     @Test
     public void testTable() throws DBException {
-        //删除表
+        //删除表: drop table if exists Teacher
         dbHelper.drop(Teacher.class);
-        //断言表不存在
+        //断言表不存在:select count(*) from sqlite_master where type='table' and name='Teacher'
         assertThat(dbHelper.isExist(Teacher.class)).isEqualTo(false);
-        //创建表
+        //创建表:create table if not exists Teacher(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT,age INTEGER,course TEXT)
         dbHelper.create(Teacher.class);
-        //断言表存在
+        //断言表存在:
         assertThat(dbHelper.isExist("Teacher")).isEqualTo(true);
     }
 
@@ -108,6 +107,7 @@ public class DBTestClient {
         Person person = new Person("Fishyer", 23);
         dbHelper.beginTransaction();
         for (int i = 0; i < 100; i++) {
+            //insert or replace into Person (name,height,age) values ('Fishyer',180.0,23)
             dbHelper.insert(person);
         }
         dbHelper.endTransaction();
@@ -118,14 +118,14 @@ public class DBTestClient {
      */
     @Test
     public void testDelete() throws DBException {
-        //删除指定数据:
+        //删除指定数据(不推荐，建议使用条件删除):delete from Person where name='Stay' and height=180.0 and age=-1;
         dbHelper.deleteObj(new Person("Stay"));
 
-        //删除所有数据:
+        //删除所有数据:delete from Person
         dbHelper.deleteAll(Person.class);
 
-        //条件删除：delete from Person where age<23
-        dbHelper.delete(Person.class).whereInt("age<23").execute();
+        //条件删除：delete from Person where name='Stay'
+        dbHelper.delete(Person.class).where("name=Stay").execute();
     }
 
     @Test
@@ -143,16 +143,10 @@ public class DBTestClient {
         dbHelper.select(Person.class).whereInt("age>=21").orderBy("name").query();
 
         //条件查询2：select * from Person order by age desc
-        dbHelper.select(Person.class)
-                .where("name=Stay")
-                .append("order by id")
-                .desc().query();
+        dbHelper.select(Person.class).where("name=Stay").append("order by id").desc().query();
 
         //条件查询3：select * from Person where age='23' order by name
-        dbHelper.select(Person.class)
-                .whereInt("age=23")
-                .orderBy("id")
-                .query();
+        dbHelper.select(Person.class).whereInt("age=23").orderBy("id").query();
 
         //去重查询：select distinct * from Person order by age desc
         dbHelper.distinct(Person.class).whereInt("age=23").orderBy("id").query();

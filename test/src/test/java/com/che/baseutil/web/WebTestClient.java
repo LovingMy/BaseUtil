@@ -2,8 +2,8 @@ package com.che.baseutil.web;
 
 import com.che.base_util.LogUtil;
 import com.che.baseutil.BuildConfig;
-import com.che.baseutil.web.bean.LoginRequest;
-import com.che.baseutil.web.bean.LoginResponse;
+import com.che.baseutil.web.bean.TestLoginRequest;
+import com.che.baseutil.web.bean.TestLoginResponse;
 import com.che.baseutil.web.helper.IWebLoading;
 import com.che.baseutil.web.helper.TestWebLoading;
 import com.che.baseutil.web.helper.TestWebTransformer;
@@ -43,11 +43,11 @@ public class WebTestClient {
         //创建网络接口
         WebInterface webInterface = new WebClient().getWebInterface(WebInterface.class);
         //执行登录请求
-        webInterface.login(new LoginRequest("yutianran", "123456"))
+        webInterface.login(new TestLoginRequest("yutianran", "123456"))
                 .compose(new TestWebTransformer<>(webLoading))
-                .subscribe(new AbsWebSubscriber<LoginResponse>(webLoading) {
+                .subscribe(new AbsWebSubscriber<TestLoginResponse>(webLoading) {
                     @Override
-                    public void onSuccess(LoginResponse response) {
+                    public void onSuccess(TestLoginResponse response) {
                         LogUtil.print("response=" + response.toString());
                         //断言
                         assertThat(response).isNotNull();

@@ -12,13 +12,13 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class LoginRequest {
+public class TestLoginRequest {
 
     private String userName;//用户名
     private String password;// 密码
     private Boolean rememberMe;// 记住我
 
-    public LoginRequest(String userName, String password) {
+    public TestLoginRequest(String userName, String password) {
         this.userName = userName;
         this.password = MD5Util.encode(password);
         this.rememberMe = true;

@@ -203,5 +203,4 @@ public class DBHelper extends SQLiteOpenHelper {
         getReadableDatabase().endTransaction();
     }
 
-
 }

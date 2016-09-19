@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Environment;
 import android.util.Log;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +16,7 @@ import com.che.base_util.MD5Util;
 import com.che.base_util.NetStateUtil;
 import com.che.base_util.SPUtil;
 import com.che.base_util.VersionUtil;
+import com.che.baseutil.config.IntentAction;
 import com.che.baseutil.bean.SPObj;
 
 import org.junit.Assert;
@@ -83,6 +85,10 @@ public class TestClient {
 
         SPObj getObj = SPUtil.getObject("SPObj", SPObj.class);
         LogUtil.print("读取-Object:" + getObj.toString());
+
+        WebView webView=new WebView(context);
+
+        webView.addJavascriptInterface(this,"vip");
     }
 
     @Test
@@ -169,7 +175,7 @@ public class TestClient {
         //判断Activity是否跳转
         Intent actualIntent = Shadows.shadowOf(activity).getNextStartedActivity();
         Intent expectedIntent = new Intent();
-        expectedIntent.setAction(IntentKey.ACTIVITY_SECOND);
+        expectedIntent.setAction(IntentAction.ACTIVITY_SECOND);
         LogUtil.print("actualIntent.action=" + actualIntent.getAction());
         assertThat(expectedIntent.getAction()).isEqualTo(actualIntent.getAction());
     }

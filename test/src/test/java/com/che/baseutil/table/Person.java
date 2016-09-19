@@ -19,14 +19,21 @@ public class Person {
     @Column
     private int id;
 
-    @NotNull
-    @Check("name!='Fuck'")
+    @Check("name!='Fucker'")
     @Column
     private String name;
 
     @Default
     @Column
-    private int age = 5;//Default表示列有默认值，默认值为字段的默认值：-1
+    private double height = 180;
+
+    @Column
+    private int age;
+
+    @Default
+    @NotNull
+    @Column
+    private String job = "IT";
 
     public Person() {
     }
@@ -39,4 +46,5 @@ public class Person {
         this.name = name;
         this.age = age;
     }
+
 }

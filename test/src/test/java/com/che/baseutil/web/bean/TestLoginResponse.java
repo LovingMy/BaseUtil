@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class LoginResponse extends BaseResponse {
+public class TestLoginResponse extends BaseResponse {
     private String session = "";
     private long uid = 0;//用户id
     private String trueName = "";// 用户真名

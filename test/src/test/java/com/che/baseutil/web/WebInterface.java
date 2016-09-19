@@ -1,9 +1,9 @@
 package com.che.baseutil.web;
 
 import com.che.baseutil.web.bean.OrderListRequest;
-import com.che.baseutil.web.bean.LoginRequest;
+import com.che.baseutil.web.bean.TestLoginRequest;
 import com.che.baseutil.web.bean.OrderListResponse;
-import com.che.baseutil.web.bean.LoginResponse;
+import com.che.baseutil.web.bean.TestLoginResponse;
 import com.che.baseutil.web.bean.VersionResponse;
 
 import retrofit2.http.Body;
@@ -18,7 +18,7 @@ public interface WebInterface {
     String HOST_NAME = "http://jpjc.che.com";//服务器地址;
 
     @POST(HOST_NAME + "/jcsapp/user/login")
-    Observable<LoginResponse> login(@Body LoginRequest request);//登录
+    Observable<TestLoginResponse> login(@Body TestLoginRequest request);//登录
 
     @POST(HOST_NAME + "/jcsapp/user/version")
     Observable<VersionResponse> version(@Body Object request); //更新apk
