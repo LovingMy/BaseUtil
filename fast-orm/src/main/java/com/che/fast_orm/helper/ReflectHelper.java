@@ -235,11 +235,6 @@ public class ReflectHelper {
      * 例如:'Stay',23
      */
     private static Object getCursorValue(Cursor cursor, String filedName, Class<?> type) {
-        while (cursor.moveToNext()) {
-            int nameColumnIndex = cursor.getColumnIndex("filedName");
-            String value = cursor.getString(nameColumnIndex);
-        }
-
         //文本
         if (type == String.class) {
             return cursor.getString(cursor.getColumnIndex(filedName));
