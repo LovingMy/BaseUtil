@@ -34,6 +34,7 @@ public class BaseTestClient {
         Application application = RuntimeEnvironment.application;//获取应用Context
     }
 
+
     @Test
     public void test() {
         int a = 2 + 2;
