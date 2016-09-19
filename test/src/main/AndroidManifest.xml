@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.che.baseutil">
+          package="com.che.test">
 
     <!--网络权限-->
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity">
+        <activity android:name="com.che.test.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -28,21 +28,21 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SecondActivity">
+        <activity android:name="com.che.test.SecondActivity">
             <intent-filter>
                 <action android:name="activity_second"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
 
-        <activity android:name=".timer.TimerActivity">
+        <activity android:name="com.che.test.timer.TimerActivity">
             <intent-filter>
                 <action android:name="activity_timer"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
 
-        <service android:name=".timer.TimerService">
+        <service android:name="com.che.test.timer.TimerService">
             <intent-filter>
                 <action android:name="service_timer"/>
             </intent-filter>
